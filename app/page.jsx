@@ -12,21 +12,23 @@ import {
 } from "@/components/ui/dialog";
 import FeatureCard from '@/components/ui/FeatureCard';
 
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import Navbar from '@/components/ui/Navbar';
+
+
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100">
-      <header className="container mx-auto py-8">
-        <nav className="flex justify-between items-center">
-          <div className="text-2xl font-bold">SyntheticData</div>
-          <div className="space-x-4">
-            <Button variant="ghost">Features</Button>
-            <Button variant="ghost">Pricing</Button>
-            <Button variant="ghost">About</Button>
-            <Button>Get Started</Button>
-          </div>
-        </nav>
-      </header>
-
+      
+      <Navbar/>
       <main className="container mx-auto py-16">
         <div className="text-center mb-16 animate-fadeIn">
           <h1 className="text-5xl font-bold mb-4">
@@ -35,7 +37,7 @@ export default function Home() {
           <p className="text-xl text-gray-600 mb-8">
             Generate high-quality synthetic data for your machine learning models
           </p>
-          <Dialog>
+          <Dialog className="sm:h-5">
             <DialogTrigger asChild>
               <Button size="lg">Learn More</Button>
             </DialogTrigger>
