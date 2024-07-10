@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <header className="container mx-auto py-8">
       <nav className="flex justify-between items-center">
-        <div className="text-2xl font-bold">SyntheticData</div>
+        <div className="text-2xl font-bold">SyncCrowd</div>
         <div className="flex lg:hidden items-center">
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
@@ -44,7 +44,6 @@ const Navbar = () => {
           <Button variant="ghost">Features</Button>
           <Button variant="ghost">Pricing</Button>
           <Button variant="ghost">About</Button>
-          {/* <Button onClick={redirectToAuth}>Get Started</Button> */}
           {
             path === '/dashboard'? (<UserButton/>): (<Button onClick={redirectToAuth}>Get Started</Button>)
           }
