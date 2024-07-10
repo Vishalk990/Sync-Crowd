@@ -1,6 +1,4 @@
 "use client"
-import { useState } from 'react';
-import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,14 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import FeatureCard from '@/components/ui/FeatureCard';
 
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import Navbar from '@/components/ui/Navbar';
 
 
