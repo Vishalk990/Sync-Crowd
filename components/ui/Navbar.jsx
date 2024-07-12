@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"; // Importing the search bar input
 import { Menu } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
+import { NavModal } from "./NavModal";
 
 const Navbar = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -22,7 +23,7 @@ const Navbar = () => {
 
 
   return (
-    <header className="container mx-auto py-8">
+    <header className="mx-auto py-8 px-10 sticky top-0 z-50 bg-gradient-to-br from-blue-100 to-purple-100 shadow-md">
       <nav className="flex justify-between items-center">
         <div
           className="text-2xl font-bold  cursor-pointer"
@@ -61,14 +62,10 @@ const Navbar = () => {
             </SheetContent>
           </Sheet>
         </div>
+        
         <div className="hidden lg:flex space-x-4 items-center">
-          <Button variant="ghost">Platform</Button>
-          <Button variant="ghost">Use Cases</Button>
-          <Button variant="ghost">Resources</Button>
-          <Button variant="ghost" onClick={() => router.push("/pricing")}>
-            Pricing
-          </Button>
-          <Button variant="ghost" onClick={()=>router.push("/docs")}>Docs</Button>
+          <NavModal/>
+
           <Input placeholder="Search" className="w-64" />{" "}
           {/* Adding the search bar */}
           <Button onClick={redirectToAuth}>Login</Button>{" "}
