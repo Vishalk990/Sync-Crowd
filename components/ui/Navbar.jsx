@@ -20,9 +20,8 @@ const Navbar = () => {
     console.log(path);
   });
 
-
   return (
-    <header className="container mx-auto py-8">
+    <header className="mx-auto py-8 px-10 sticky top-0 z-50 bg-gradient-to-br from-blue-100 to-purple-100 shadow-md">
       <nav className="flex justify-between items-center">
         <div
           className="text-2xl font-bold  cursor-pointer"
@@ -62,13 +61,38 @@ const Navbar = () => {
           </Sheet>
         </div>
         <div className="hidden lg:flex space-x-4 items-center">
-          <Button variant="ghost">Platform</Button>
-          <Button variant="ghost">Use Cases</Button>
-          <Button variant="ghost">Resources</Button>
-          <Button variant="ghost" onClick={() => router.push("/pricing")}>
+          <Button
+            variant="ghost"
+            className="hover:bg-black hover:text-slate-200 hover:rounded-full transition-all duration-300 ease-in-out hover:scale-105"
+          >
+            Platform
+          </Button>
+          <Button
+            variant="ghost"
+            className="hover:bg-black hover:text-slate-200 hover:rounded-full transition-all duration-300 ease-in-out hover:scale-105"
+          >
+            Use Cases
+          </Button>
+          <Button
+            variant="ghost"
+            className="hover:bg-black hover:text-slate-200 hover:rounded-full transition-all duration-300 ease-in-out hover:scale-105"
+          >
+            Resources
+          </Button>
+          <Button
+            variant="ghost"
+            className="hover:bg-black hover:text-slate-200 hover:rounded-full transition-all duration-300 ease-in-out hover:scale-105"
+            onClick={() => router.push("/pricing")}
+          >
             Pricing
           </Button>
-          <Button variant="ghost" onClick={()=>router.push("/docs")}>Docs</Button>
+          <Button
+            variant="ghost"
+            className="hover:bg-black hover:text-slate-200 hover:rounded-full transition-all duration-300 ease-in-out hover:scale-105"
+            onClick={() => router.push("/docs")}
+          >
+            Documentation
+          </Button>
           <Input placeholder="Search" className="w-64" />{" "}
           {/* Adding the search bar */}
           <Button onClick={redirectToAuth}>Login</Button>{" "}
