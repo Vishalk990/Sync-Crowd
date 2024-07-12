@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import FeatureCard from '@/components/ui/FeatureCard';
+import Footer from "@/components/ui/Footer";
 
 import Navbar from '@/components/ui/Navbar';
 
@@ -66,11 +67,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="bg-gray-100 py-8 mt-16">
-        <div className="container mx-auto text-center text-gray-600">
-          © 2024 Synthetic Data Platform. All rights reserved.
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }

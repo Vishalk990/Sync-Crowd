@@ -16,10 +16,6 @@ const Navbar = () => {
     router.push("/dashboard");
   };
 
-  const redirectToLogin = () => {
-    router.push("/login");
-  };
-
   useEffect(() => {
     console.log(path);
   });
@@ -63,7 +59,7 @@ const Navbar = () => {
           <Button variant="ghost">Platform</Button>
           <Button variant="ghost">Use Cases</Button>
           <Button variant="ghost">Resources</Button>
-          <Button variant="ghost">Pricing</Button>
+          <Button variant="ghost" onClick={()=> router.push("/pricing")}>Pricing</Button>
           <Button variant="ghost">Docs</Button>
           <Input placeholder="Search" className="w-64" />{" "}
           {/* Adding the search bar */}
