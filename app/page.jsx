@@ -33,12 +33,7 @@ export default function Home() {
           <div className="flex gap-10 justify-center">
             <Dialog className="sm:h-5">
               <DialogTrigger asChild>
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-bl from-cyan-400 via-blue-500 to-purple-600 text-slate-100 px-6 py-3 rounded-full hover:opacity-80 transition-opacity"
-                >
-                  Learn More
-                </Button>
+                <Button size="lg">Learn More</Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
@@ -51,11 +46,7 @@ export default function Home() {
                 </DialogHeader>
               </DialogContent>
             </Dialog>
-            <Button
-              size="lg"
-              className="bg-gradient-to-bl from-cyan-400 via-blue-500 to-purple-600 text-slate-100 px-6 py-3 rounded-full hover:opacity-80 transition-opacity"
-              onClick={() => router.push("/docs")}
-            >
+            <Button size="lg" onClick={() => router.push("/docs")}>
               Go to Docs
             </Button>
           </div>
