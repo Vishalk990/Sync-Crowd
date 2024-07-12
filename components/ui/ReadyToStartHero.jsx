@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 
 const ReadyToStartHero = () => {
   return (
-    <div className="w-full h-screen bg-gradient-to-bl from-cyan-400 via-blue-500 to-purple-600 flex flex-col items-center justify-center p-4">
+    <div className="w-full py-20 bg-gradient-to-bl from-cyan-400 via-blue-500 to-purple-600 flex flex-col items-center justify-center p-4">
       <div className="relative mb-8">
-        <div className="w-20 h-20 bg-gradient-to-br from-yellow-300 to-green-300 rounded-2xl flex items-center justify-center text-4xl font-bold text-gray-700 shadow-lg">
+        <div className="w-28 h-28 bg-gradient-to-br from-yellow-300 to-green-300 rounded-2xl flex items-center justify-center text-4xl font-bold text-gray-700 shadow-lg">
           M
         </div>
         <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-md">
@@ -25,7 +25,7 @@ const ReadyToStartHero = () => {
         </div>
       </div>
 
-      <h2 className="text-4xl font-bold text-white mb-4">Ready to start?</h2>
+      <h2 className="text-6xl font-bold text-white mb-4 text-center">Ready to start?</h2>
       <p className="text-white text-center mb-8 font-semibold">
         Sign up for free or contact our team to schedule a demo.
       </p>
