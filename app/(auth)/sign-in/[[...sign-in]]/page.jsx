@@ -1,6 +1,18 @@
-import { SignIn } from "@clerk/nextjs";
+"use client";
+import { SignIn, useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  // const { isSignedIn } = useUser();
+  // const router = useRouter();
+
+  // if (isSignedIn) {
+    
+  //   router.push("/dashboard");
+  //   return null; // Prevent rendering the SignIn component
+  // }
+
+
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -68,7 +80,7 @@ export default function Page() {
                 Eligendi nam dolorum aliquam, quibusdam aperiam voluptatum.
               </p>
             </div>
-            <SignIn/>
+            <SignIn />
           </div>
         </main>
       </div>
