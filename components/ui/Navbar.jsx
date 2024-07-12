@@ -20,10 +20,16 @@ const Navbar = () => {
     console.log(path);
   });
 
+
   return (
     <header className="container mx-auto py-8">
       <nav className="flex justify-between items-center">
-        <div className="text-2xl font-bold">SyncCrowd</div>
+        <div
+          className="text-2xl font-bold  cursor-pointer"
+          onClick={() => router.push("/")}
+        >
+          SyncCrowd
+        </div>
         <div className="flex lg:hidden items-center">
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
@@ -59,8 +65,10 @@ const Navbar = () => {
           <Button variant="ghost">Platform</Button>
           <Button variant="ghost">Use Cases</Button>
           <Button variant="ghost">Resources</Button>
-          <Button variant="ghost" onClick={()=> router.push("/pricing")}>Pricing</Button>
-          <Button variant="ghost">Docs</Button>
+          <Button variant="ghost" onClick={() => router.push("/pricing")}>
+            Pricing
+          </Button>
+          <Button variant="ghost" onClick={()=>router.push("/docs")}>Docs</Button>
           <Input placeholder="Search" className="w-64" />{" "}
           {/* Adding the search bar */}
           <Button onClick={redirectToAuth}>Login</Button>{" "}
