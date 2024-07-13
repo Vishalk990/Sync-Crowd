@@ -1,26 +1,32 @@
 export const sidebarLinks = [
     {
-        label : 'Home',
+        label : 'Dashboard',
         route : '/',
         imgUrl : '',
     },
     {
-        label : 'Upcoming',
+        label : 'Synthetic Dataset',
         route : '/upcoming',
         imgUrl : '',
     },
     {
-        label : 'Previous',
+        label : 'Data Labelling',
         route : '/previous',
         imgUrl : '',
     },
     {
-        label : 'Rrecordings',
+        label : 'CrowdSource',
         route : '/recordings',
         imgUrl : '',
     },
     {
-        label : 'Personal Room',
+        label : 'Data Cleaning',
+        route : '/personal-room',
+        imgUrl : '',
+    },
+
+    {
+        label : 'Model Evaluation',
         route : '/personal-room',
         imgUrl : '',
     },

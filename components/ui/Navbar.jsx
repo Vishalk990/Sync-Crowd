@@ -49,8 +49,8 @@ const Navbar = () => {
         <div className="hidden lg:flex space-x-4 items-center">
 
           {/* <Input placeholder="Search" className="w-64" />{" "}  */}
-          {/* Adding the search bar */}
           <CommandDialogDemo /><Search height={20} width={20} onClick={simulateCtrlJ} className="cursor-pointer"/>
+          {/* Adding the search bar */}
           {/* Adding the Login button */}
           {path === "/dashboard" ? (
             <UserButton />
