@@ -7,6 +7,7 @@ import { Menu, Search } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 import { NavModal } from "./NavModal";
+import CommandDialogDemo from "./CommandDialogDemo";
 
 const Navbar = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -21,6 +22,17 @@ const Navbar = () => {
     console.log(path);
   });
 
+  const simulateCtrlJ = () => {
+    const event = new KeyboardEvent('keydown', {
+      bubbles: true,
+      cancelable: true,
+      key: 'j',
+      code: 'KeyJ',
+      ctrlKey: true
+    });
+
+    document.dispatchEvent(event);
+  };
 
   return (
     <header className="mx-auto py-8 px-10 sticky top-0 z-50 bg-gradient-to-br from-blue-100 to-purple-100 shadow-md">
@@ -36,7 +48,8 @@ const Navbar = () => {
 
         <div className="hidden lg:flex space-x-4 items-center">
 
-          <Input placeholder="Search" className="w-64" />{" "} <Search />
+          {/* <Input placeholder="Search" className="w-64" />{" "}  */}
+          <CommandDialogDemo /><Search height={20} width={20} onClick={simulateCtrlJ} className="cursor-pointer"/>
           {/* Adding the search bar */}
           <Button onClick={redirectToAuth}>Login</Button>{" "}
           {/* Adding the Login button */}
