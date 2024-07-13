@@ -52,7 +52,7 @@ const components = [
 
 export function NavModal() {
     return (
-        <NavigationMenu>
+        <NavigationMenu className="max-sm:hidden">
             <NavigationMenuList className="space-x-5">
                 <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-gradient rounded-full">Platform</NavigationMenuTrigger>
