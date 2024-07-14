@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Search } from "lucide-react";
+import { Info, Menu, Search } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 
@@ -21,7 +21,7 @@ const DashboardNavbar = () => {
 
 
   return (
-    <header className="mx-auto py-8 px-10 sticky top-0 z-50 bg-gradient-to-br from-blue-100 to-purple-100 shadow-md">
+    <header className="mx-auto py-4 px-10 sticky top-0 z-50 shadow-md">
       <nav className="flex justify-between items-center">
         <div
           className="text-2xl font-bold  cursor-pointer flex gap-9 items-center"
@@ -33,7 +33,12 @@ const DashboardNavbar = () => {
 
         <div className="hidden lg:flex space-x-4 items-center">
           {path === "/dashboard" ? (
-            <UserButton />
+            <div className="flex gap-3 items-center justify-center">
+              <div className="flex gap-3 border border-slate-400 p-1 rounded-sm items-center justify-center cursor-pointer">
+                Credits <Info className="cursor-pointer" fill="#000" color="#fff"/>
+              </div>
+              <UserButton />
+            </div>
           ) : (
             <Button onClick={redirectToAuth}>Get Started</Button>
           )}
