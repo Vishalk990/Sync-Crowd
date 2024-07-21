@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Info, Menu, Search } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
+import { sidebarLinks } from "@/app/(home)/dashboardContent";
 
 const DashboardNavbar = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -19,6 +20,7 @@ const DashboardNavbar = () => {
     console.log(path);
   });
 
+  const isInDashboardRoutes = sidebarLinks.some(link => path.startsWith(link.route));
 
   return (
     <header className="py-4 px-10 sticky top-0 z-50 shadow-md">
@@ -30,9 +32,8 @@ const DashboardNavbar = () => {
           SyncCrowd
         </div>
 
-
         <div className="hidden lg:flex space-x-4 items-center">
-          {path === "/dashboard" ? (
+          {isInDashboardRoutes ? (
             <div className="flex gap-3 items-center justify-center">
               <div className="flex gap-3 border border-slate-400 p-1 rounded-sm items-center justify-center cursor-pointer">
                 Credits <Info className="cursor-pointer" fill="#000" color="#fff"/>
