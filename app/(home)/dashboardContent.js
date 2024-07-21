@@ -3,32 +3,32 @@ import { LayoutDashboard, Database, Tags, Users, FileSpreadsheet, LineChart } fr
 export const sidebarLinks = [
     {
         label: 'Dashboard',
-        route: '/',
+        route: '/dashboard',
         icon: LayoutDashboard,
     },
     {
         label: 'Synthetic Dataset',
-        route: '/upcoming',
+        route: '/synthetic-data',
         icon: Database,
     },
     {
         label: 'Data Labelling',
-        route: '/previous',
+        route: '/data-labelling',
         icon: Tags,
     },
     {
         label: 'CrowdSource',
-        route: '/recordings',
+        route: '/crowd-source',
         icon: Users,
     },
     {
         label: 'Data Cleaning',
-        route: '/personal-room',
+        route: '/data-cleaning',
         icon: FileSpreadsheet,
     },
     {
         label: 'Model Evaluation',
-        route: '/personal-room',
+        route: '/model-evaluation',
         icon: LineChart,
     },
 ];

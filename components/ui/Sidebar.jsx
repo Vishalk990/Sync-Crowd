@@ -1,6 +1,6 @@
 "use client"
 
-import { sidebarLinks } from '@/app/(dashboard)/dashboard/dasboardContent'
+import { sidebarLinks } from '@/app/(home)/dashboardContent'
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
