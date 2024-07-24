@@ -44,7 +44,7 @@ export async function POST(request) {
     console.log("Successfully Uploaded : ", result.secure_url);
 
     return NextResponse.json(
-      { success: true, url: result.secure_url },
+      { success: true, result: result },
       { status: 200 }
     );
   } catch (error) {
