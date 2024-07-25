@@ -57,20 +57,20 @@ export default function CSVUpload() {
 
 
       // Delete the old csv from cloudinary
-      // console.log(uploadData.result.public_id);
-      // const deleteResponse = await fetch('/api/cloudinary/delete', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ publicId: uploadData.result.public_id }),
-      // });
+      console.log(uploadData.result.public_id);
+      const deleteResponse = await fetch('/api/cloudinary/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ public_id: uploadData.result.public_id }),
+      });
 
-      // if (!deleteResponse.ok) {
-      //   throw new Error('Failed to delete old file');
-      // }
+      if (!deleteResponse.ok) {
+        throw new Error('Failed to delete old file');
+      }
 
-      // console.log("Deleted the old file");
+      console.log("Deleted the old file");
 
 
       // Convert json data back to csv

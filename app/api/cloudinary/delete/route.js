@@ -17,7 +17,7 @@ export async function POST(request) {
     }
 
     const result = await new Promise((resolve, reject) => {
-      cloudinary.uploader.destroy(publicId,  (error, result) => {
+      cloudinary.uploader.destroy(public_id,  (error, result) => {
         if (error) reject(error);
         else resolve(result);
       });
