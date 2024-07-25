@@ -23,7 +23,7 @@ const DashboardNavbar = () => {
   const isInDashboardRoutes = sidebarLinks.some(link => path.startsWith(link.route));
 
   return (
-    <header className="py-4 px-10 sticky top-0 z-50 shadow-md">
+    <header className="bg-white py-4 px-10 sticky top-0 z-50 shadow-md">
       <nav className="flex justify-between items-center">
         <div
           className="text-2xl font-bold  cursor-pointer flex gap-9 items-center"

@@ -9,9 +9,9 @@ function DashboardLayout({ children }) {
       <DashboardNavbar />
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 ml-[300px] p-6">
+        <main className="flex-1 ml-[300px]">
           {/* Adjust ml-[300px] if your sidebar width is different */}
-          <div className="mx-5 md:mx-20 lg:mx-36">{children}</div>
+          <div className="">{children}</div>
         </main>
       </div>
       <Footer />
