@@ -14,6 +14,10 @@ import Footer from "@/components/ui/Footer";
 import Navbar from "@/components/ui/Navbar";
 import ReadyToStartHero from "@/components/ui/ReadyToStartHero";
 import { useRouter } from "next/navigation";
+import Globe from "@/components/magicui/globe";
+import Meteors from "@/components/magicui/meteors";
+import Image from "next/image";
+
 
 export default function Home() {
   const router = useRouter();
@@ -21,15 +25,21 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100">
       <Navbar />
-      <main className="container mx-auto py-16">
+      <main className="container mx-auto py-14">
         <div className="text-center mb-16 animate-fadeIn">
-          <h1 className="text-5xl font-bold mb-4">
-            Synthetic Data Generation Platform
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Generate high-quality synthetic data for your machine learning
-            models
-          </p>
+
+          <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden">
+            <Meteors number={30} />
+            <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
+              Synthetic Data Generation Platform
+              <p className="text-lg font-light text-gray-400 mb-8">
+                Generate high-quality synthetic data for your machine learning
+                models
+              </p>
+            </span>
+          </div>
+
+
           <div className="flex gap-10 justify-center">
             <Dialog className="sm:h-5">
               <DialogTrigger asChild>
@@ -51,6 +61,8 @@ export default function Home() {
             </Button>
           </div>
         </div>
+
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <FeatureCard
