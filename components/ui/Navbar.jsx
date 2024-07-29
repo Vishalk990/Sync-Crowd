@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input"; // Importing the search bar input component from ShadCN
-import { Menu, Search } from "lucide-react";
+import { Menu, Play, Search } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 import { NavModal } from "./NavModal";
@@ -55,7 +55,7 @@ const Navbar = () => {
           {path === "/dashboard" ? (
             <UserButton />
           ) : (
-            <Button onClick={redirectToAuth}>Get Started</Button>
+            <Button onClick={redirectToAuth}>Get Started <Play height={18} width={18} className="m-1"/> </Button>
           )}
         </div>
 
