@@ -17,6 +17,8 @@ import Meteors from "@/components/magicui/meteors";
 import { Boxes, FileText, Goal, Library, ScrollText } from "lucide-react";
 import Services from "@/components/custom/Services";
 import { AnimatedTooltipPreview } from "@/components/ui/AnimatedTooltipPreview.jsx";
+import { Companies } from "@/components/custom/Companies";
+
 
 
 export default function Home() {
@@ -43,7 +45,7 @@ export default function Home() {
           <div className="flex gap-10 justify-center">
             <Dialog className="sm:h-5">
               <DialogTrigger asChild>
-                <Button size="lg" className="">Learn More <Library height={27} width={27} className="p-1" /></Button>
+                <Button size="lg">Learn More <Library height={27} width={27} className="p-1" /></Button>
               </DialogTrigger>
 
               <DialogContent>
@@ -77,11 +79,11 @@ export default function Home() {
                     </p>
 
                     <span className="flex items-center gap-3">
-                    <Boxes />
+                      <Boxes />
                       <h3 className="py-2 font-semibold text-xl"> Meet the Team </h3>
                     </span>
 
-                    <AnimatedTooltipPreview/>
+                    <AnimatedTooltipPreview />
 
                   </DialogDescription>
                 </DialogHeader>
@@ -93,7 +95,9 @@ export default function Home() {
           </div>
         </div>
 
+        <Companies/>
         <Services />
+
       </main>
       <ReadyToStartHero />
       <Footer />
