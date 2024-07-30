@@ -59,7 +59,7 @@ export default function CSVUpload() {
       // const generatedData = await generateResponse.json();
       // console.log(generatedData);
 
-      console.log("Got the synthetic data");
+      // console.log("Got the synthetic data");
 
       // Delete the old csv from cloudinary
       console.log(uploadData.result.public_id);

@@ -1,4 +1,4 @@
-import { LayoutDashboard, Database, Tags, Users, FileSpreadsheet, LineChart } from "lucide-react";
+import { LayoutDashboard, Database, Tags, Users, FileSpreadsheet, LineChart, Sparkles } from "lucide-react";
 
 export const sidebarLinks = [
     {
@@ -31,4 +31,10 @@ export const sidebarLinks = [
         route: '/model-evaluation',
         icon: LineChart,
     },
+    {
+        label: 'Asistance',
+        route: '/asistance',
+        icon: Sparkles,
+    },
 ];
+
