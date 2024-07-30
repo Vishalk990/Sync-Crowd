@@ -1,9 +1,15 @@
+"use client"
 import Footer from "@/components/ui/Footer";
 import Sidebar from "@/components/ui/Sidebar";
 import React from "react";
 import DashboardNavbar from "../../components/custom/DashboardNavbar";
+import { useSaveUserToDatabase } from "@/hooks/useSaveUserToDatabase";
+import { Toaster } from "@/components/ui/toaster";
 
 function DashboardLayout({ children }) {
+
+  useSaveUserToDatabase();
+
   return (
     <div className="bg-gradient min-h-screen">
       <DashboardNavbar />
@@ -15,6 +21,7 @@ function DashboardLayout({ children }) {
         </main>
       </div>
       <Footer />
+      <Toaster />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+import { useSaveUserToDatabase } from "@/hooks/useSaveUserToDatabase";
 import { SignIn, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -12,7 +13,6 @@ export default function Page() {
   //   router.push("/dashboard");
   //   return null; // Prevent rendering the SignIn component
   // }
-
 
   return (
     <section className="bg-white">
