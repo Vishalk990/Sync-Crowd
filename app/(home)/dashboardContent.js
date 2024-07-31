@@ -32,8 +32,8 @@ export const sidebarLinks = [
         icon: LineChart,
     },
     {
-        label: 'Asistance',
-        route: '/asistance',
+        label: 'Assistance',
+        route: '/assistance',
         icon: Sparkles,
     },
 ];
