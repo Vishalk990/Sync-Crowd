@@ -15,10 +15,17 @@ const userSchema = new mongoose.Schema({
         required: true, 
         unique: true 
     },
-    
+    cloudinaryUrls: [{ 
+        type: String
+    }],
+    membershipType: {
+        type: String,
+        enum: ['free', 'pro', 'scaler'],
+        default: 'free'
+    },
     // Add other sample attributes
-    age: { type: Number },
-    location: { type: String },
+    // age: { type: Number },
+    // location: { type: String },
     joinedAt: { 
         type: Date, 
         default: Date.now 

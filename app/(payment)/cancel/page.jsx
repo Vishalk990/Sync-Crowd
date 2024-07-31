@@ -1,8 +1,9 @@
+import { FailurePage } from '@/components/custom/FailurePage'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>Cancel - payment page</div>
+    <FailurePage/>
   )
 }
 

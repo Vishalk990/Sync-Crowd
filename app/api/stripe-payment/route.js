@@ -7,16 +7,13 @@ export async function POST(request) {
     try {
         const { tire, price } = await request.json();
 
-        // Log the received data for debugging
-        console.log('Received data:', price);
-
         const lineItems = [{
             price_data: {
                 currency: 'usd',
                 product_data: {
                     name: tire.name,
                 },
-                unit_amount: Math.round(price * 100), // Assuming tire.price is an array with a single value
+                unit_amount: Math.round(price),
             },
             quantity: 1,
         }];
@@ -29,7 +26,12 @@ export async function POST(request) {
             cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cancel`,
         });
 
-        return new Response(JSON.stringify({ id: session.id }), {
+        console.log(session);
+        // Include the amount_total in the response
+        return new Response(JSON.stringify({
+            id: session.id,
+            amount_total: session.amount_total
+        }), {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',
