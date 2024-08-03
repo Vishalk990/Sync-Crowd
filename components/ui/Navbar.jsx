@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    console.log(path);
+    // console.log(path);
   });
 
   const simulateCtrlJ = () => {

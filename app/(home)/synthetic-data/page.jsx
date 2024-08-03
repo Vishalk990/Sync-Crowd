@@ -1,20 +1,31 @@
 "use client";
-
+import { useCloudinaryUpload } from "@/hooks/useCloudinaryUpload";
 import { useState } from "react";
 import Papa from "papaparse";
+import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Circle, Download, Sparkles } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Sparkles, Upload, Download, Loader2 } from "lucide-react";
 
 export default function CSVUpload() {
+
+  const {user} = useUser();
   const [file, setFile] = useState(null);
   const [publicUrl, setPublicUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [sampleCount, setSampleCount] = useState(1000);
+  const { uploadToCloudinary, deleteFromCloudinary, isUploading, uploadError } = useCloudinaryUpload();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const handleSampleCountChange = (e) => {
+    setSampleCount(parseInt(e.target.value));
   };
 
   const handleUpload = async () => {
@@ -25,56 +36,31 @@ export default function CSVUpload() {
 
     try {
       // Upload file to Cloudinary
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const uploadResponse = await fetch("/api/cloudinary/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      const uploadData = await uploadResponse.json();
-      if (!uploadData.success) {
-        throw new Error(uploadData.message || "Upload failed");
-      }
-
-      console.log("1st Upload Done", uploadData.result);
+      const uploadData = await uploadToCloudinary(file);
+      console.log("1st Upload Done", uploadData);
 
       // Make POST request to generate data
-      // const generateResponse = await fetch(
-      //   "https://suryanshbachchan.us-east-1.modelbit.com/v1/generateData/latest",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({ data: uploadData.result.secure_url }),
-      //   }
-      // );
+      const generateResponse = await fetch(
+        "https://suryanshbachchan.us-east-1.modelbit.com/v1/generateData/latest",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ data: [uploadData.secure_url, sampleCount] }),
+          // body: JSON.stringify({ data: uploadData.secure_url}),
+        }
+      );
 
-      // if (!generateResponse.ok) {
-      //   throw new Error("Data generation failed");
-      // }
-
-      // const generatedData = await generateResponse.json();
-      // console.log(generatedData);
-
-      // console.log("Got the synthetic data");
-
-      // Delete the old csv from cloudinary
-      console.log(uploadData.result.public_id);
-      const deleteResponse = await fetch("/api/cloudinary/delete", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ public_id: uploadData.result.public_id }),
-      });
-
-      if (!deleteResponse.ok) {
-        throw new Error("Failed to delete old file");
+      if (!generateResponse.ok) {
+        throw new Error("Data generation failed");
       }
 
+      const generatedData = await generateResponse.json();
+      console.log("Got the synthetic data");
+
+      // Delete the old csv from cloudinary
+      await deleteFromCloudinary(uploadData.public_id);
       console.log("Deleted the old file");
 
       // Convert json data back to csv
@@ -82,74 +68,115 @@ export default function CSVUpload() {
       console.log("Converted Json to Csv");
 
       // Upload the new file to cloudinary
-      const newFormData = new FormData();
-      newFormData.append(
-        "file",
-        new Blob([csv], { type: "csv" }),
-        "generated_data.csv"
-      );
-
-      const newUploadResponse = await fetch("/api/cloudinary/upload", {
-        method: "POST",
-        body: newFormData,
-      });
-
-      const newUploadData = await newUploadResponse.json();
-      setPublicUrl(newUploadData.result.secure_url);
+      const blob = new Blob([csv], { type: "text/csv" });
+      const newFile = new File([blob], "generated_data.csv", { type: "text/csv" });
+      const newUploadData = await uploadToCloudinary(newFile);
+      setPublicUrl(newUploadData.secure_url);
 
       console.log("2nd upload done");
+
+
+       // Add the new URL to the user's cloudinaryUrls array
+      if (user) {
+        const response = await fetch('/api/user/addcloudinaryurl', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ cloudinaryUrl: newUploadData.secure_url }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to add Cloudinary URL to user profile');
+        }
+
+        console.log('Cloudinary URL added to user profile');
+      }
+
     } catch (error) {
       console.error("Error:", error);
-      setError(error.message);
+      setError(error.message || uploadError || "An error occurred");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <nav className="bg-gray-800 p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <span className="text-white text-xl font-bold flex items-center gap-2">
-            <Sparkles />
-            Generate Synthetic Data
-          </span>
+    <div className="min-h-screen bg-gray-100">
+      <nav className="bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xl font-semibold text-gray-800 flex items-center gap-2">
+              <Sparkles className="h-10 w-6 text-blue-500" />
+              Generate Synthetic Data
+            </span>
+          </div>
         </div>
       </nav>
 
-      <main className="container mx-auto mt-8 flex-grow">
-        <div className="flex flex-col items-start gap-4">
-          <Input
-            type="file"
-            accept=".csv"
-            onChange={handleFileChange}
-            disabled={isLoading}
-            className="cursor-pointer"
-          />
-          <div className="flex gap-4">
-            <Button onClick={handleUpload} disabled={!file || isLoading} className="cursor-pointer">
-              {isLoading ? (
-                <>
-                  <Circle className="animate-bounce mr-2" /> Processing...
-                </>
-              ) : (
-                "Upload and Generate Data"
-              )}
-            </Button>
+      <main className="container mx-auto mt-8 px-4">
+        <Card>
+          <CardHeader>
+            <CardTitle>Upload CSV and Generate Synthetic Data</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="csv-file">Upload CSV File</Label>
+                <Input
+                  id="csv-file"
+                  type="file"
+                  accept=".csv"
+                  onChange={handleFileChange}
+                  disabled={isLoading || isUploading}
+                />
+              </div>
 
-            {publicUrl && (
-              <Link href={publicUrl} download="generated_data.csv">
-                <Button>
-                  <Download /> Download
+              <div className="space-y-2">
+                <Label htmlFor="sample-count">Number of Samples</Label>
+                <Input
+                  id="sample-count"
+                  type="number"
+                  value={sampleCount}
+                  onChange={handleSampleCountChange}
+                  min="1"
+                  placeholder="Enter number of samples"
+                />
+              </div>
+
+              <Button
+                onClick={handleUpload}
+                disabled={!file || isLoading || isUploading}
+                className="flex-1"
+              >
+                {isLoading || isUploading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="mr-2 h-4 w-4" />
+                    Upload and Generate
+                  </>
+                )}
+              </Button>
+
+              {publicUrl && (
+                <Button asChild className="flex-1 m-4">
+                  <Link href={publicUrl} download="generated_data.csv">
+                    <Download className="mr-2 h-4 w-4" />
+                    Download Result
+                  </Link>
                 </Button>
-              </Link>
-            )}
-          </div>
+              )}
 
-          {isLoading && <div>Loading... This may take a while.</div>}
-
-          {error && <div className="text-red-500">{error}</div>}
-        </div>
+              {(error || uploadError) && (
+                <div className="text-red-500 text-sm mt-2">{error || uploadError}</div>
+              )}
+            </form>
+          </CardContent>
+        </Card>
       </main>
     </div>
   );

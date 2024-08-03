@@ -23,7 +23,7 @@ const DashboardNavbar = () => {
   };
 
   useEffect(() => {
-    console.log(path);
+    // console.log(path);
   });
 
   const isInDashboardRoutes = sidebarLinks.some(link => path.startsWith(link.route));

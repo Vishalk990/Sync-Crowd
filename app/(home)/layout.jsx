@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 function DashboardLayout({ children }) {
 
+  
   useSaveUserToDatabase();
 
   return (

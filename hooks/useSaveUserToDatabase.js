@@ -6,44 +6,71 @@ export function useSaveUserToDatabase() {
   const { user, isLoaded: isUserLoaded } = useUser();
   const { session, isLoaded: isSessionLoaded } = useSession();
   const [saveStatus, setSaveStatus] = useState(null);
-  const saveTimeoutRef = useRef(null);
   const isSavingRef = useRef(false);
   const { toast } = useToast();
 
   useEffect(() => {
     if (isUserLoaded && isSessionLoaded && user && session) {
-      const hasRegistered = localStorage.getItem('userRegistered');
-      
-      if (!hasRegistered) {
-        if (saveTimeoutRef.current) {
-          clearTimeout(saveTimeoutRef.current);
-        }
-
-        saveTimeoutRef.current = setTimeout(() => {
-          saveUserToDatabase(user);
-        }, 1000);
-      }
+      checkAndSaveUser(user);
+      console.log(user.firstName); // Add a check here
     }
-
-    return () => {
-      if (saveTimeoutRef.current) {
-        clearTimeout(saveTimeoutRef.current);
-      }
-    };
   }, [isUserLoaded, isSessionLoaded, user, session]);
 
-  async function saveUserToDatabase(user) {
+  async function checkAndSaveUser(user) {
     if (isSavingRef.current) return;
-
     isSavingRef.current = true;
-    setSaveStatus('saving');
+    setSaveStatus('checking');
 
+    try {
+      // First, check if the user exists in the database
+      const checkResponse = await fetch('/api/user/allusers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: user.primaryEmailAddress.emailAddress,
+        }),
+      });
+
+      if (!checkResponse.ok) {
+        throw new Error('Failed to check user');
+      }
+
+      const { exists } = await checkResponse.json();
+
+      if (exists) {
+        // User already exists, just show a toast
+        setSaveStatus('success');
+        toast({
+          title: "Welcome back!",
+          description: "You're successfully logged in.",
+          duration: 2000,
+        });
+      } else {
+        // User doesn't exist, save to database
+        await saveUserToDatabase(user);
+      }
+    } catch (error) {
+      console.error('Error checking/saving user:', error.message);
+      setSaveStatus('error');
+      toast({
+        title: "Error",
+        description: "Error syncing user data. Please try again.",
+        variant: "destructive",
+        duration: 2000,
+      });
+    } finally {
+      isSavingRef.current = false;
+    }
+  }
+
+  async function saveUserToDatabase(user) {
+    setSaveStatus('saving');
     try {
       const response = await fetch('/api/user', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: user.fullName,
+          name: user.fullName || `${user.firstName} ${user.lastName}`.trim(),
           email: user.primaryEmailAddress.emailAddress,
         }),
       });
@@ -55,7 +82,6 @@ export function useSaveUserToDatabase() {
       const data = await response.json();
       console.log('User successfully registered in DB:', data.user);
       setSaveStatus('success');
-      localStorage.setItem('userRegistered', 'true');
       toast({
         title: "Success",
         description: "Welcome to Sync-Crowd!",
@@ -66,12 +92,10 @@ export function useSaveUserToDatabase() {
       setSaveStatus('error');
       toast({
         title: "Error",
-        description: "Error syncing user data. Please try again.",
+        description: "Error registering user. Please try again.",
         variant: "destructive",
         duration: 2000,
       });
-    } finally {
-      isSavingRef.current = false;
     }
   }
 
