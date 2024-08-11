@@ -102,8 +102,9 @@ export default function CSVUpload() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <nav className="bg-white shadow-sm">
+
+    <div className="min-h-[90vh] bg-gray-100">
+      <nav className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <span className="text-xl font-semibold text-gray-800 flex items-center gap-2">

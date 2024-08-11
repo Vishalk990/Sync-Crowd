@@ -1,9 +1,18 @@
+
 import React from 'react'
 
-const page = () => {
+const Page = () => {
   return (
-    <div>Asistance page</div>
+    <>
+      <iframe
+        className='h-[90vh] w-full'
+        src="https://chat-with-csv-synccrowd.vercel.app/"
+        frameborder="0"
+        style={{ border: 'none' }}
+        title="Chat Application"
+      ></iframe>
+    </>
   )
 }
 
-export default page
+export default Page

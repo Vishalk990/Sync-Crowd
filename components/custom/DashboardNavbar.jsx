@@ -17,8 +17,10 @@ const DashboardNavbar = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const router = useRouter();
   const path = usePathname();
+  const [loading, setLoading] = useState(false);
 
   const redirectToAuth = () => {
+    setLoading(true);
     router.push("/dashboard");
   };
 
@@ -78,7 +80,7 @@ const DashboardNavbar = () => {
               <UserButton />
             </div>
           ) : (
-            <Button onClick={redirectToAuth}>Get Started</Button>
+            <Button onClick={redirectToAuth} loading={loading}>Get Started</Button>
           )}
         </div>
       </nav>

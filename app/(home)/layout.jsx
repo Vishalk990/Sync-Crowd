@@ -21,7 +21,7 @@ function DashboardLayout({ children }) {
           <div className="">{children}</div>
         </main>
       </div>
-      <Footer />
+      {/* <Footer /> */}
       <Toaster />
     </div>
   );

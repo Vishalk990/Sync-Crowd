@@ -14,7 +14,7 @@ const people = [
     name: "Suryansh Bachchan Verma",
     designation: "Product Manager",
     image:
-    ["https://media.licdn.com/dms/image/D5603AQGMyDd1EXsPIg/profile-displayphoto-shrink_400_400/0/1702790880511?e=1727913600&v=beta&t=wBZ5TCZNCAHClwC3J2uM62LNyI6uzwwunDfhGRaKjY8"],
+    ["https://media.licdn.com/dms/image/D5603AQGBrIEP7dT1fw/profile-displayphoto-shrink_400_400/0/1723103383972?e=1728518400&v=beta&t=yQQX2IgOUzXUCXMnCBaNdI8a7YnMOnQdQDMaSTEetkI"],
   },
   {
     id: 3,

@@ -10,7 +10,7 @@ const Sidebar = () => {
     const pathname = usePathname();
 
     return (
-        <aside className='fixed left-0 top-[64px] bottom-0 w-[300px] overflow-y-auto p-6 text-black max-sm:hidden bg-gradient-to-br from-blue-100 to-purple-100'>
+        <aside className='fixed left-0 top-[64px] bottom-0 w-[300px] overflow-y-auto p-6 text-black max-sm:hidden bg-gradient-to-br from-blue-100 to-purple-100 border-r'>
             <div className='flex flex-col gap-2'>
                 {sidebarLinks.map((link) => {
                     const isActive = pathname === link.route || pathname.startsWith(`${link.route}/`);
