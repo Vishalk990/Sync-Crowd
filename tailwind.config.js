@@ -62,6 +62,10 @@ module.exports = {
           to: {
             backgroundPosition: "var(--bg-size) 0",
           },
+          move: {
+            "0%": { transform: "translateX(-200px)" },
+            "100%": { transform: "translateX(200px)" },
+          },
         },
         "accordion-down": {
           from: { height: "0" },
@@ -85,6 +89,7 @@ module.exports = {
         }
       },
       animation: {
+        move: "move 5s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fadeIn": 'fadeIn 1s ease-in-out',

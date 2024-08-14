@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ModelEvaluation = () => {
+const page = () => {
   return (
-    <div>ModelEvaluation</div>
+    <div>Model Evaluation </div>
   )
 }
 
-export default ModelEvaluation
+export default page
