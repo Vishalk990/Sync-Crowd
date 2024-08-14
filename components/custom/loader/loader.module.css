@@ -1,10 +1,10 @@
 .loading {
-    --speed-of-animation: 1.5s; /* Slower animation */
+    --speed-of-animation: 1.5s; 
     --gap: 6px;
-    --first-color: #DDE6F6;
-    --second-color: #F4F7FF;
-    --third-color: #5F6368;
-    --fourth-color: #15141A;
+    --first-color: #5e8fe3;
+    --second-color: #d2b0dc;
+    --third-color: #9ca5b1;
+    --fourth-color: #6e698a;
     --fifth-color: #699BF7;
     display: flex;
     justify-content: center;
@@ -15,7 +15,7 @@
   }
   
   .loading span {
-    width: 8px; /* Thicker sticks */
+    width: 8px; 
     height: 50px;
     background: var(--first-color);
     animation: scale var(--speed-of-animation) ease-in-out infinite;

@@ -29,7 +29,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100">
       <Navbar />
-      {/* <Loader/> */}
       <main className="container mx-auto py-14">
         <div className="text-center mb-16 animate-fadeIn">
 
