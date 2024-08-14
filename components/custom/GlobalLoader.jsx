@@ -1,4 +1,4 @@
-import Loader from "./loader/loader";
+import Loader from "../../utils/loader/loader";
 
 const GlobalLoader = () => {
   return (

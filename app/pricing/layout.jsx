@@ -1,6 +1,6 @@
-import Footer from "@/components/ui/Footer";
-import Navbar from "@/components/ui/Navbar";
-import ReadyToStartHero from "@/components/ui/ReadyToStartHero";
+import Footer from "@/components/custom/Footer";
+import Navbar from "@/components/custom/Navbar";
+import ReadyToStartHero from "@/components/custom/ReadyToStartHero";
 import React from "react";
 
 

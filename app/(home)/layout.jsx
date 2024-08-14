@@ -1,6 +1,6 @@
 "use client"
-import Footer from "@/components/ui/Footer";
-import Sidebar from "@/components/ui/Sidebar";
+import Footer from "@/components/custom/Footer";
+import Sidebar from "@/components/custom/Sidebar";
 import React from "react";
 import DashboardNavbar from "../../components/custom/DashboardNavbar";
 import { useSaveUserToDatabase } from "@/hooks/useSaveUserToDatabase";

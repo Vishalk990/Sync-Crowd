@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,16 +9,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import Footer from "@/components/ui/Footer";
-import Navbar from "@/components/ui/Navbar";
-import ReadyToStartHero from "@/components/ui/ReadyToStartHero";
+import ReadyToStartHero from "@/components/custom/ReadyToStartHero";
 import { useRouter } from "next/navigation";
 import Meteors from "@/components/magicui/meteors";
 import { Boxes, FileText, Goal, Library, ScrollText } from "lucide-react";
 import Services from "@/components/custom/Services";
-import { AnimatedTooltipPreview } from "@/components/ui/AnimatedTooltipPreview.jsx";
+import { AnimatedTooltipPreview } from "@/components/custom/AnimatedTooltipPreview"; 
 import { Companies } from "@/components/custom/Companies";
-import Loader from "@/components/custom/loader/loader";
+import Footer from "@/components/custom/Footer";
+import Navbar from "@/components/custom/Navbar";
 
 
 

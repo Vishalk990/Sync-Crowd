@@ -1,7 +1,6 @@
 import React from "react";
 
 import { cn } from "@/lib/utils";
-// import { Icons } from "@/components/icons";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -127,13 +126,6 @@ export function NavModal() {
                         Pricing
                     </NavigationMenuLink>
                 </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(),"bg-gradient rounded-full hover:bg-black hover:text-white")} href="/docs">
-                        Documentation
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
-
 
             </NavigationMenuList>
         </NavigationMenu>

@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
-
+import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
+import GlobalLoader from "@/components/custom/GlobalLoader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,14 +12,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider appearance={{
-      layout: {
-        // socialButtonsVariant: "iconButton",
-        logoImageUrl: "/synclogo.jpg",
-      }
-    }}>
+    <ClerkProvider
+      appearance={{
+        layout: {
+          logoImageUrl: "/synclogo.jpg",
+        },
+      }}
+    >
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <ClerkLoading>
+            <GlobalLoader />
+          </ClerkLoading>
+          <ClerkLoaded>{children}</ClerkLoaded>
+        </body>
       </html>
     </ClerkProvider>
   );

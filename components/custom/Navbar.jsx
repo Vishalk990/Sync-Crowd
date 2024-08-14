@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Play, Search } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
-import { NavModal } from "./NavModal";
-import CommandDialogDemo from "./CommandDialogDemo";
-import GlobalLoader from "../custom/GlobalLoader";
+import { UserButton, useUser } from "@clerk/nextjs";
+import { NavModal } from "./NavModal"; 
+import GlobalLoader from "./GlobalLoader";
 
 const Navbar = () => {
+  const { isLoaded, isSignedIn, user } = useUser();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const router = useRouter();
   const path = usePathname();
@@ -23,20 +23,8 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    // console.log(path);
+   
   });
-
-  const simulateCtrlJ = () => {
-    const event = new KeyboardEvent('keydown', {
-      bubbles: true,
-      cancelable: true,
-      key: 'j',
-      code: 'KeyJ',
-      ctrlKey: true
-    });
-
-    document.dispatchEvent(event);
-  };
 
   return (
     <>
@@ -52,9 +40,7 @@ const Navbar = () => {
           </div>
 
           <div className="hidden lg:flex space-x-4 items-center">
-            <CommandDialogDemo />
-            <Search height={20} width={20} onClick={simulateCtrlJ} className="cursor-pointer"/>
-            {path === "/dashboard" ? (
+            {path === "/dashboard" && isLoaded && isSignedIn? (
               <UserButton />
             ) : (
               <Button onClick={redirectToAuth} disabled={loading}>
