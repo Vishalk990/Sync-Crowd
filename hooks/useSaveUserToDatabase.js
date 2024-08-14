@@ -2,7 +2,7 @@ import { useUser, useSession } from "@clerk/nextjs";
 import { useEffect, useState, useRef } from "react";
 import { useToast } from "@/components/ui/use-toast";
 
-export function useSaveUserToDatabase() {
+export function  useSaveUserToDatabase() {
   const { user, isLoaded: isUserLoaded } = useUser();
   const { session, isLoaded: isSessionLoaded } = useSession();
   const [saveStatus, setSaveStatus] = useState(null);
@@ -46,7 +46,7 @@ export function useSaveUserToDatabase() {
           duration: 2000,
         });
       } else {
-        // User doesn't exist, save to database
+ 
         await saveUserToDatabase(user);
       }
     } catch (error) {

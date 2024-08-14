@@ -23,9 +23,15 @@ const userSchema = new mongoose.Schema({
         enum: ['free', 'pro', 'scaler'],
         default: 'free'
     },
-    // Add other sample attributes
-    // age: { type: Number },
-    // location: { type: String },
+    credits: {
+        type: Number,
+        default: 5  
+    },
+    purchaseHistory: [{
+        productId: String,
+        purchaseDate: Date,
+        amount: Number
+    }],
     joinedAt: { 
         type: Date, 
         default: Date.now 
