@@ -1,7 +1,7 @@
 
 import { getAuth } from "@clerk/nextjs/server";
-import dbConnect from "@/lib/dbConnect";
-import User from "@/model/User";
+import dbConnect from "@/utils/dbConnect";
+import User from "@/models/User";
 
 export async function POST(request) {
   const { userId } = getAuth(request);
