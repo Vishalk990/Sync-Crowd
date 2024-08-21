@@ -40,11 +40,11 @@ export function  useSaveUserToDatabase() {
       if (exists) {
         // User already exists, just show a toast
         setSaveStatus('success');
-        toast({
-          title: "Welcome back!",
-          description: "You're successfully logged in.",
-          duration: 2000,
-        });
+        // toast({
+        //   title: "Welcome back!",
+        //   description: "You're successfully logged in.",
+        //   duration: 2000,
+        // });
       } else {
  
         await saveUserToDatabase(user);

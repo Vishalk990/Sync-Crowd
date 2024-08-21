@@ -122,9 +122,9 @@ const SyntheticDataGenerator = () => {
                             </CSVLink>
                         </div>
                     ) :
-                        (
-                            <div></div>
-                        )
+                    (
+                        <div></div>
+                    )
                 }
 
             </div>

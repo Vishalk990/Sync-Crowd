@@ -21,16 +21,16 @@ export const sidebarLinks = [
         route: '/crowd-source',
         icon: Users,
     },
-    {
-        label: 'Data Cleaning',
-        route: '/data-cleaning',
-        icon: FileSpreadsheet,
-    },
-    {
-        label: 'Model Evaluation',
-        route: '/model-evaluation',
-        icon: LineChart,
-    },
+    // {
+    //     label: 'Data Cleaning',
+    //     route: '/data-cleaning',
+    //     icon: FileSpreadsheet,
+    // },
+    // {
+    //     label: 'Model Evaluation',
+    //     route: '/model-evaluation',
+    //     icon: LineChart,
+    // },
     {
         label: 'Assistance',
         route: '/assistance',
