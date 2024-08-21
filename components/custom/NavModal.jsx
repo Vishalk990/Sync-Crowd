@@ -11,7 +11,21 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
+const blogs = [
+    { title: "What Is Synthetic Data?", href: "https://blogs.nvidia.com/blog/what-is-synthetic-data/", description: "Synthetic data generated from computer simulations or algorithms provides an inexpensive alternative to real-world data that’s increasingly used to create accurate AI models." },
+    { title: "Data Access + Data Insights for Everyone", href: "https://mostly.ai/blog/data-access-data-insights-for-everyone", description: "Data democratization is the process of making data more accessible to a wider range of people within an organization (and).. empowering people to make informed decisions and take action based on data insights." },
+    { title: "Synthetic Data for Better Machine Learning", href: "https://www.databricks.com/blog/2023/04/12/synthetic-data-better-machine-learning.html", description: "Leverage AI to generate synthetic data for better models, or safer data sharing with data teams" },
+];
+
+const videos = [
+    { title: "What is Synthetic Data? No, It's Not FAKE Data", href: "https://www.youtube.com/watch?v=HIusawrGBN4", description: "Synthetic data is artificially generated data versus data based on actual events, but it's not fake data. It replicates the properties of real data without the troubles of capturing it, such as confidentiality, low-volume, or expensive-to-validate. With synthetic data, it's easier and less costly to train AI models, however, it's not a panacea. For example, synthetic data may not fully represent the unexpected events that happen in the real world. In this video, Martin Keen explains what synthetic data is, its uses, benefits, and challenges; he wraps up his presentation by explain how it's generated." },
+    { title: "5 ways to generate synthetic data", href: "https://www.youtube.com/watch?v=wJuCnYkrYLA&t=618s", description: "5 ways to generate synthetic data Synthetic data generation machine learning Synthetic data generation Synthetic data explained Synthetic data in healthcare Synthetic data ai Synthetic data unity Synthetic data pipeline" },
+    { title: "How to Make Synthetic Data", href: "https://www.youtube.com/watch?v=-vUoRZgWKUw&t=235s", description: "Description for Video 3" },
+];
+
+
 const components = [
+    
     {
         title: "Alert Dialog",
         href: "/docs/primitives/alert-dialog",
@@ -105,21 +119,33 @@ export function NavModal() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger className="bg-gradient rounded-full">Resources</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                            {components.map((component) => (
-                                <ListItem
-                                    key={component.title}
-                                    title={component.title}
-                                    href={component.href}
-                                >
-                                    {component.description}
-                                </ListItem>
-                            ))}
-                        </ul>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
+    <NavigationMenuTrigger className="bg-gradient rounded-full">Resources</NavigationMenuTrigger>
+    <NavigationMenuContent>
+        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+            <li>
+                <h3 className="font-semibold text-lg">Blogs</h3>
+                <ul className="ml-4 mt-2 space-y-2">
+                    {blogs.map((blog) => (
+                        <ListItem key={blog.title} title={blog.title} href={blog.href}>
+                            {blog.description}
+                        </ListItem>
+                    ))}
+                </ul>
+            </li>
+            <li>
+                <h3 className="font-semibold text-lg">Videos</h3>
+                <ul className="ml-4 mt-2 space-y-2">
+                    {videos.map((video) => (
+                        <ListItem key={video.title} title={video.title} href={video.href}>
+                            {video.description}
+                        </ListItem>
+                    ))}
+                </ul>
+            </li>
+        </ul>
+    </NavigationMenuContent>
+</NavigationMenuItem>
+
 
                 <NavigationMenuItem>
                     <NavigationMenuLink className={cn(navigationMenuTriggerStyle(),"bg-gradient rounded-full hover:bg-black hover:text-white")} href="/pricing">
