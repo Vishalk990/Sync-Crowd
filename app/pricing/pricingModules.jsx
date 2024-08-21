@@ -14,7 +14,7 @@ export default function PricingModule() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const makePayment = async (e, tire, price) => {
+  const makePayment = async (e, tier, price) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -25,7 +25,7 @@ export default function PricingModule() {
     price = price.replace(",", "");
 
     const body = {
-      tire: tire,
+      tier: tier,
       price: price,
     };
     // console.log(price.replace("₹", ""));

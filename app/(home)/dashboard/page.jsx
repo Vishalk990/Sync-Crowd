@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import GlobalLoader from "@/components/custom/GlobalLoader";
-import { Download } from "lucide-react";
+import { Download, Loader } from "lucide-react";
 
 const PageContent = () => {
   const { user } = useUser();
@@ -61,7 +61,7 @@ const PageContent = () => {
       <div className="m-3 p-3">
         <h2 className="text-2xl font-semibold m-3 p-3">History</h2>
         {loading ? (
-          <GlobalLoader/>
+          <Loader className="animate-spin mx-auto my-3"/>
         ) : error ? (
           <p>Error: {error}</p>
         ) : datasets.length > 0 ? (

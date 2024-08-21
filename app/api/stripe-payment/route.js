@@ -11,7 +11,7 @@ export async function POST(request) {
     try {
         await dbConnect(); 
 
-        const { tire, price } = await request.json();
+        const { tier, price } = await request.json();
 
         const { userId: clerkUserId } = auth();
         if (!clerkUserId) {
@@ -33,7 +33,7 @@ export async function POST(request) {
             price_data: {
                 currency: 'usd',
                 product_data: {
-                    name: tire.name,
+                    name: tier.name,
                 },
                 unit_amount: Math.round(price),
             },
@@ -56,10 +56,22 @@ export async function POST(request) {
             transactionId: stripeSession.id,
             amount: stripeSession.amount_total, 
             email: userEmail,
+            tier: tier.name
         });
 
         
         await payment.save();
+
+        // Update user's tier and purchase history
+        await User.findByIdAndUpdate(user._id, { 
+            membershipType: tier.name,
+            $push: { 
+                purchaseHistory: {
+                    purchaseDate: new Date(),
+                    amount: stripeSession.amount_total 
+                }
+            }
+        });
 
         return new Response(JSON.stringify({
             id: stripeSession.id,

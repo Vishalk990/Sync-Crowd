@@ -84,11 +84,11 @@ const DashboardNavbar = () => {
                       >
                         Credits: {userDetails?.credits || 0}
                       </span>
-                      <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+                      {/* <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" /> */}
                     </AnimatedGradientText>
                   </div>
                 </HoverCardTrigger>
-                <HoverCardContent className="w-80 p-4 rounded-xl m-3 bg-gradient-to-br from-blue-100 to-purple-100 shadow-xl">
+                {/* <HoverCardContent className="w-80 p-4 rounded-xl m-3 bg-gradient-to-br from-blue-100 to-purple-100 shadow-xl">
                   <div className="flex justify-between space-x-4">
                     <div className="space-y-1">
                       <h4 className="text-sm font-semibold flex gap-3 items-center py-2">
@@ -96,7 +96,7 @@ const DashboardNavbar = () => {
                         <CreditCardIcon height={20} width={20} />
                       </h4>
                       <Progress
-                        value={(userDetails?.credits / 100) * 100}
+                        value={1/(userDetails?.credits) * 100}
                         className="h-[6px]"
                       />
                       <p className="text-sm">
@@ -113,7 +113,7 @@ const DashboardNavbar = () => {
                       </div>
                     </div>
                   </div>
-                </HoverCardContent>
+                </HoverCardContent> */}
               </HoverCard>
               <UserButton />
             </div>

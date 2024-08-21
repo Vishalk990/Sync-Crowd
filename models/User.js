@@ -28,7 +28,6 @@ const userSchema = new mongoose.Schema({
         default: 5  
     },
     purchaseHistory: [{
-        productId: String,
         purchaseDate: Date,
         amount: Number
     }],
