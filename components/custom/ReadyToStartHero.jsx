@@ -1,7 +1,12 @@
+"use client"
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const ReadyToStartHero = () => {
+
+  const router = useRouter();
+
   return (
     <div className="w-full py-20 bg-gradient-to-bl from-cyan-400 via-blue-500 to-purple-600 flex flex-col items-center justify-center p-4">
       <div className="relative mb-8">
@@ -25,13 +30,18 @@ const ReadyToStartHero = () => {
         </div>
       </div>
 
-      <h2 className="text-6xl font-bold text-white mb-4 text-center">Ready to start?</h2>
+      <h2 className="text-6xl font-bold text-white mb-4 text-center">
+        Ready to start?
+      </h2>
       <p className="text-white text-center mb-8 font-semibold">
         Sign up for free or contact our team to schedule a demo.
       </p>
 
       <div className="flex space-x-4">
-        <Button className="bg-gradient-to-r from-green-400 to-yellow-300 text-gray-800 font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity">
+        <Button onClick= {()=> router.push("/dashboard")}
+          href={"/dashboard"}
+          className="bg-gradient-to-r from-green-400 to-yellow-300 text-gray-800 font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
+        >
           Get started free
         </Button>
         <Button

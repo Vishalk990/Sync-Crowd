@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <>
       {loading && <GlobalLoader />}
-      <header className="mx-auto py-8 px-10 sticky top-0 z-40 bg-gradient-to-br from-blue-100 to-purple-100 shadow-md">
+      <header className="mx-auto py-6 px-10 sticky top-0 z-40 bg-gradient-to-br from-blue-100 to-purple-100 shadow-md">
         <nav className="flex justify-between items-center">
           <div
             className="text-2xl font-bold cursor-pointer flex gap-9 items-center"
