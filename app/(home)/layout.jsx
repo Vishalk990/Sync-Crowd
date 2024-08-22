@@ -28,7 +28,7 @@ const MobileRedirect = () => {
 function DashboardLayout({ children }) {
   const [isMobile, setIsMobile] = useState(false);
   
-  useSaveUserToDatabase();
+  // useSaveUserToDatabase();
 
   useEffect(() => {
     const checkMobile = () => {
