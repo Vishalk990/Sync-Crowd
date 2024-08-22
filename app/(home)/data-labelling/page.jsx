@@ -55,6 +55,8 @@ const CrowdSource = () => {
       transition: {
         staggerChildren: 0.1,
         delayChildren: 0.3,
+        ease: "easeInOut",
+        when: "beforeChildren",
       }
     }
   };
@@ -65,7 +67,8 @@ const CrowdSource = () => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.3,
+        duration: 0.5,
+        ease: "easeInOut",
       }
     }
   };
@@ -87,7 +90,7 @@ const CrowdSource = () => {
       </motion.h1>
       <motion.div 
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        variants={containerVariants}
+        variants={cardVariants}
       >
         {tasks.map((task, index) => {
           const isComingSoon = task.buttonText === "Coming Soon...";

@@ -52,7 +52,7 @@ const SyntheticDataPageContent = () => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="h-[90vh] flex items-center justify-center"
           >
-            <Loader2 className="h-12 w-12 animate-spin text-blue-500" />
+            <Loader2 className="h-12 w-12 animate-spin text-blue-500 opacity-75" />
           </motion.div>
         ) : (
           <motion.div
