@@ -6,7 +6,7 @@ const frequencies = [
   
   const tiers = [
     {
-      name: 'Free',
+      name: 'free',
       id: '0',
       href: '/dashboard',
       price: { '1': 'Free', '2': 'Free' },
@@ -27,7 +27,7 @@ const frequencies = [
       cta: `Sign up`,
     },
     {
-      name: 'Pro',
+      name: 'pro',
       id: '1',
       href: '/subscribe',
       price: { '1': '₹799', '2': '₹9,600' },
@@ -48,7 +48,7 @@ const frequencies = [
       cta: `Get started`,
     },
     {
-      name: 'Scaler',
+      name: 'scaler',
       id: '2',
       href: '/contact-us',
       price: { '1': '₹1,800', '2': '₹21,900' },

@@ -46,6 +46,7 @@
     "react-spinners": "^0.14.1",
     "react-spring": "^9.7.4",
     "stripe": "^16.5.0",
+    "svix": "^1.30.0",
     "tailwind-merge": "^2.5.1",
     "tailwindcss-animate": "^1.0.7"
   },
