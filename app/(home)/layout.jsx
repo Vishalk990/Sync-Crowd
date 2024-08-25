@@ -1,6 +1,5 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
-import Footer from "@/components/custom/Footer";
 import Sidebar from "@/components/custom/Sidebar";
 import DashboardNavbar from "../../components/custom/DashboardNavbar";
 import { useSaveUserToDatabase } from "@/hooks/useSaveUserToDatabase";
@@ -14,7 +13,8 @@ const MobileRedirect = () => {
         <Smartphone className="w-16 h-16 mx-auto mb-4 text-blue-500" />
         <h1 className="text-2xl font-bold mb-4">Switch to Web View</h1>
         <p className="text-gray-600 mb-6">
-          For the best experience, please switch to web view or access this site from a desktop browser.
+          For the best experience, please switch to web view or access this site
+          from a desktop browser.
         </p>
         <div className="flex justify-center items-center space-x-2 text-blue-500">
           <Monitor className="w-6 h-6" />
@@ -27,12 +27,12 @@ const MobileRedirect = () => {
 
 function DashboardLayout({ children }) {
   const [isMobile, setIsMobile] = useState(false);
-  
-  useSaveUserToDatabase();
+
+  // useSaveUserToDatabase();
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); 
+      setIsMobile(window.innerWidth < 768);
     };
 
     checkMobile();

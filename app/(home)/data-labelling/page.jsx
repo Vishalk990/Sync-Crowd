@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
-const CrowdSource = () => {
+const DataLabelling = () => {
   const router = useRouter();
   const tasks = [
     {
@@ -121,4 +121,4 @@ const CrowdSource = () => {
   );
 };
 
-export default CrowdSource;
+export default DataLabelling;
