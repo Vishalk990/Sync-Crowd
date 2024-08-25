@@ -1,24 +1,14 @@
-
 import { getAuth } from "@clerk/nextjs/server";
 import dbConnect from "@/utils/dbConnect";
 import User from "@/models/User";
 
 export async function POST(request) {
-  const { userId } = getAuth(request);
-  
-  if (!userId) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-      status: 401,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
   await dbConnect();
 
   try {
-    const { name, email } = await request.json();
+    const { name, email, clerkId } = await request.json();
 
-    let user = await User.findOne({ clerkId: userId });
+    let user = await User.findOne({ clerkId });
 
     if (user) {
       // Update existing user
@@ -28,7 +18,7 @@ export async function POST(request) {
     } else {
       // Create new user
       user = new User({
-        clerkId: userId,
+        clerkId,
         name,
         email,
       });
