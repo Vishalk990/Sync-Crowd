@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useCloudinaryUpload } from "@/hooks/useCloudinaryUpload";
 import { useState } from "react";
 import Papa from "papaparse";
@@ -17,11 +17,13 @@ export default function CSVUpload() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [sampleCount, setSampleCount] = useState(1000);
+  const [isGenerated, setIsGenerated] = useState(false);
   const { uploadToCloudinary, deleteFromCloudinary, isUploading, uploadError } =
     useCloudinaryUpload();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+    setIsGenerated(false); // Reset generation status on new file upload
   };
 
   const handleSampleCountChange = (e) => {
@@ -52,7 +54,6 @@ export default function CSVUpload() {
   };
 
   const handleUpload = async () => {
-
     if (!isLoaded || !isSignedIn) {
       setError("You must be signed in to upload files");
       return;
@@ -64,11 +65,7 @@ export default function CSVUpload() {
     setError("");
 
     try {
-      // Upload file to Cloudinary
       const uploadData = await uploadToCloudinary(file);
-      console.log("1st Upload Done", uploadData);
-
-      // Make POST request to generate data
       const generateResponse = await fetch(
         "https://suryanshbachchan.us-east-1.modelbit.com/v1/generateData/latest",
         {
@@ -77,7 +74,6 @@ export default function CSVUpload() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ data: [uploadData.secure_url, sampleCount] }),
-          // body: JSON.stringify({ data: uploadData.secure_url}),
         }
       );
 
@@ -86,51 +82,28 @@ export default function CSVUpload() {
       }
 
       const generatedData = await generateResponse.json();
-      console.log("Got the synthetic data");
-
-      // Delete the old csv from cloudinary
-      await deleteFromCloudinary(uploadData.public_id);
-      console.log("Deleted the old file");
-
-      // Convert json data back to csv
       const csv = Papa.unparse(generatedData);
-      console.log("Converted Json to Csv");
-
-      // Upload the new file to cloudinary
       const blob = new Blob([csv], { type: "text/csv" });
-      const newFile = new File([blob], "generated_data.csv", {
-        type: "text/csv",
-      });
+      const newFile = new File([blob], "generated_data.csv", { type: "text/csv" });
       const newUploadData = await uploadToCloudinary(newFile);
       setPublicUrl(newUploadData.secure_url);
       await saveSyntheticDataset(newUploadData.secure_url, newFile.name);
 
-      console.log("2nd upload done");
-
-      // Add the new URL to the user's cloudinaryUrls array
       if (user) {
-        const response = await fetch("/api/user/addcloudinaryurl", {
+        await fetch("/api/user/addcloudinaryurl", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ cloudinaryUrl: newUploadData.secure_url }),
         });
-
-        if (!response.ok) {
-          throw new Error("Failed to add Cloudinary URL to user profile");
-        }
-
-        console.log("Cloudinary URL added to user profile");
       }
+
+      setIsGenerated(true); 
     } catch (error) {
       console.error("Error:", error);
       setError(error.message || uploadError || "An error occurred");
     } finally {
       setIsLoading(false);
     }
-
-    
   };
 
   return (
@@ -173,28 +146,31 @@ export default function CSVUpload() {
                   onChange={handleSampleCountChange}
                   min="1"
                   placeholder="Enter number of samples"
+                  disabled={isGenerated || isLoading || isUploading}
                 />
               </div>
 
-              <Button
-                onClick={handleUpload}
-                disabled={!file || isLoading || isUploading}
-                className="flex-1"
-              >
-                {isLoading || isUploading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Processing...
-                  </>
-                ) : (
-                  <>
-                    <Upload className="mr-2 h-4 w-4" />
-                    Upload and Generate
-                  </>
-                )}
-              </Button>
+              {!isGenerated && ( 
+                <Button
+                  onClick={handleUpload}
+                  disabled={!file || isLoading || isUploading}
+                  className="flex-1"
+                >
+                  {isLoading || isUploading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Processing...
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="mr-2 h-4 w-4" />
+                      Upload and Generate
+                    </>
+                  )}
+                </Button>
+              )}
 
-              {publicUrl && (
+              {(publicUrl && isGenerated) && (
                 <Button asChild className="flex-1 m-4">
                   <Link href={publicUrl} download="generated_data.csv">
                     <Download className="mr-2 h-4 w-4" />

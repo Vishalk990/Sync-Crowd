@@ -1,6 +1,6 @@
 'use client'
 
-import { Loader } from 'lucide-react';
+import { Loader, Loader2 } from 'lucide-react';
 import React, { useState } from 'react';
 
 const Page = () => {
@@ -14,7 +14,7 @@ const Page = () => {
     <>
       {loading && (
         <div className="flex justify-center items-center h-[90vh] w-full">
-          <Loader className='animate-spin'/>
+           <Loader2 className="h-12 w-12 animate-spin text-blue-400" />
         </div>
       )}
       <iframe

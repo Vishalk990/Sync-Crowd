@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 export default function ContributeProjectsList() {
   const [projects, setProjects] = useState([]);
@@ -37,7 +38,7 @@ export default function ContributeProjectsList() {
     setIsLoading(false);
   };
 
-  if (isLoading) return <div>Loading projects...</div>;
+  if (isLoading) return  <Loader2 className="h-12 w-12 animate-spin text-blue-400" />;
   if (error) return <div>Error: {error}</div>;
 
   return (
